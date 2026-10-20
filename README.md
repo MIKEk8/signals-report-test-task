@@ -19,6 +19,14 @@ docker compose exec db mariadb -uapp -papp signals          # консоль SQL
 docker compose down -v && docker compose up -d              # пересоздать базу с нуля
 ```
 
+### Тесты
+
+Минимальные тесты на чистом PHP, без фреймворка. Нужна работающая база; тестовые данные пишутся в транзакцию и откатываются.
+
+```bash
+docker compose exec app php tests/run.php
+```
+
 ### Без Docker
 
 PHP 8.1+ с расширениями mysqli, zip, gd, а также MySQL 8 или MariaDB 10.6+.
