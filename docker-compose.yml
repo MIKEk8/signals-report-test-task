@@ -1,0 +1,39 @@
+name: signals-report
+
+services:
+  db:
+    image: mariadb:11.4
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: signals
+      MARIADB_USER: app
+      MARIADB_PASSWORD: app
+      TZ: Europe/Moscow
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "3307:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 3s
+      retries: 30
+
+  app:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: signals
+      DB_USER: app
+      DB_PASS: app
+      # Дата «сегодня» для отчёта заморожена, чтобы цифры были воспроизводимыми
+      APP_NOW: "2026-10-19 12:00:00"
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+    command: ["sh", "-c", "composer install --no-interaction --no-progress && apache2-foreground"]

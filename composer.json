@@ -1,0 +1,12 @@
+{
+    "name": "capital/signals-report",
+    "description": "Отчёт по сделкам (тестовое задание)",
+    "require": {
+        "php": ">=8.1",
+        "ext-mysqli": "*",
+        "phpoffice/phpspreadsheet": "^2.2"
+    },
+    "config": {
+        "platform-check": false
+    }
+}

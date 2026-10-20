@@ -1,0 +1,25 @@
+body { background-color: #fff; }
+
+.top_header { padding: 10px 20px; background-color: rgb(245, 245, 245); }
+.top_header .title_h { font-size: 18px; font-weight: 600; }
+
+.overflow_auto { overflow: auto; }
+
+.table_signal_common { min-width: 100%; border-collapse: collapse; font-size: 14px; }
+.table_signal_common .tr_signal_result { background-color: rgb(235, 255, 255); font-weight: 600; }
+.table_signal_common td,
+.table_signal_common th { border: 1px solid rgb(200, 200, 200); padding: 10px; text-align: center; }
+.table_signal_common thead tr { background-color: rgb(235, 235, 255); font-weight: 600; }
+.table_signal_common .itog_sitnal_bg { background-color: rgb(250, 250, 240); }
+.table_signal_common .itog_signal_deal { font-weight: 600; }
+
+.status_signal_not_is_in_work,
+.status_signal_is_closed,
+.status_signal_is_canceled,
+.status_signal_is_deleted,
+.status_signal_is_in_work { border-radius: 10px; color: black; font-size: 13px; padding: 3px 8px; display: inline-block; white-space: nowrap; }
+.status_signal_not_is_in_work { background-color: rgb(220, 230, 164); }
+.status_signal_is_closed { background-color: rgb(182, 247, 157); }
+.status_signal_is_canceled { background-color: rgb(243, 150, 150); }
+.status_signal_is_deleted { background-color: rgb(200, 50, 50); color: white; }
+.status_signal_is_in_work { background-color: rgb(146, 199, 248); }
