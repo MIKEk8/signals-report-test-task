@@ -121,14 +121,16 @@ class Fnc
 
 		} else {
 
-			// LIKE по datetime не использует индекс, поэтому диапазон
+			// LIKE по datetime не использует индекс, поэтому диапазон [1-е число; 1-е следующего месяца).
+				// BETWEEN ... LAST_DAY() не годится: LAST_DAY — это полночь последнего дня, сделки с 00:01 до 23:59 31-го выпадают.
 			$sql = $this->mysqli->query("
 					SELECT * FROM `tg_signal`
 					WHERE
 					`category_id_signal`=$category_id and
 					`is_published`=1 and
 					`is_deleted`=0 and
-					`date_closed` BETWEEN '{$date_month}01' AND LAST_DAY('{$date_month}01') and
+					`date_closed` >= '{$date_month}01' and
+						`date_closed` < DATE_ADD('{$date_month}01', INTERVAL 1 MONTH) and
 					`is_canceled`=0
 				");
 		}
