@@ -136,8 +136,9 @@ class Fnc
 
 
 		$array = array();
-		$col_take_profit = 0; // кол-во take profit
 		while ($res = $sql->fetch_assoc()) {
+
+			$col_take_profit = 0; // кол-во take profit у этой сделки (сбрасывается на каждой)
 
 			$tool_id = $res['tool_id'];
 			$tool = $this->getTool($tool_id);
